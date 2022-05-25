@@ -1,33 +1,32 @@
 <%- include('partials/nav') %>
 <button onclick="topFunction()" class="hidden fixed bottom-10 right-20 z-50 border-0 outline-0 cursor-pointer rounded-full bg-slate-50 p-4" id="myBtn" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
-<div class="header flex h-screen justify-between items-center flex-row pl-44 pr-44">
+<div class="header flex h-screen justify-between items-center flex-row pl-44 pr-44  animate__animated animate__backInUp">
     <div class="info">
         <p class="font-montserrat text-7xl">Accounter</p>
         <p class="font-montserrat text-xl">Track It Down!</p>
         <br>
-        <button class="p-2 bg-gradient-to-r from-slate-600 to-slate-400 rounded-md font-semibold text-white">Get
+        <button class="p-2 bg-slate-500 rounded-md font-semibold text-white hover:bg-none transition ease-in duration-100 hover:bg-slate-700">Get
             Started</button>
     </div>
     <div class="image w-2/6">
         <img src="/image/reciept.svg" alt="">
     </div>
 </div>
-<div class="body bg-slight-gray flex h-screen justify-between items-center">
+<div class="body  bg-slight-gray flex h-screen justify-between items-center">
     <div class="cards flex flex-row justify-between pr-44 pl-44">
-        <div class="card w-1/4 p-4 rounded-md bg-slate-50 shadow-lg">
-            <div class="card-header">
+        <div class="card w-1/4 p-4 rounded-md bg-slate-50 items-center justify-between shadow-lg">
+            <div class="card-header flex flex-col justify-center items-center">
+                
+                <i class="text-green-400 fa-solid fa-dollar-sign text-6xl p-4"></i>
+
                 <p class="font-montserrat text-2xl">
-                    <i class="fa-solid fa-dollar-sign"></i>
-                    <span class="pl-2">Track your earnings</span>
+                    <span class="font-bold">Track your earnings</span>
                 </p>
             </div>
             <br>
             <div class="card-body">
-                <p class="font-montserrat text-xl">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pellentesque euismod, nisi vel consectetur interdum,
-                    nisl nunc euismod nisi, eget consectetur nisl nunc
-                    euismod nisi.
+                <p class="font-montserrat text-l text-center">
+                    With our app, it becomes significantly easy to manage your daily transactions related to freelancing, business, or any other thing. Our app makes a specialized chart based on your data per day that gives you a better representation of your data.
                 </p>
             </div>
         </div>
@@ -40,11 +39,8 @@
             </div>
             <br>
             <div class="card-body">
-                <p class="font-montserrat text-xl">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pellentesque euismod, nisi vel consectetur interdum,
-                    nisl nunc euismod nisi, eget consectetur nisl nunc
-                    euismod nisi.
+                <p class="font-montserrat text-l">
+                    We provide a very easy-to-understand and use interface which can be used by anyone. There is a clean looking dashboard to manage all your data.
                 </p>
             </div>
         </div>
@@ -57,11 +53,8 @@
             </div>
             <br>
             <div class="card-body">
-                <p class="font-montserrat text-xl">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pellentesque euismod, nisi vel consectetur interdum,
-                    nisl nunc euismod nisi, eget consectetur nisl nunc
-                    euismod nisi.
+                <p class="font-montserrat text-l">
+                    The data you enter is safe, and our database is fully encrypted and secured. Even the staff of our app cannot see inside your data!
                 </p>
             </div>
         </div>

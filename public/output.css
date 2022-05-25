@@ -468,12 +468,36 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
+.fixed {
+  position: fixed;
+}
+
+.bottom-10 {
+  bottom: 2.5rem;
+}
+
+.right-20 {
+  right: 5rem;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
 .flex {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-screen {
   height: 100vh;
+}
+
+.h-12 {
+  height: 3rem;
 }
 
 .h-16 {
@@ -492,6 +516,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .flex-row {
   flex-direction: row;
 }
@@ -500,12 +528,28 @@ Ensure the default browser behavior of the `hidden` attribute.
   align-items: center;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .justify-between {
   justify-content: space-between;
 }
 
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
 .rounded-md {
   border-radius: 0.375rem;
+}
+
+.border-0 {
+  border-width: 0px;
 }
 
 .border-b {
@@ -521,12 +565,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
-.p-2 {
-  padding: 0.5rem;
-}
-
 .p-4 {
   padding: 1rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .pl-44 {
@@ -595,6 +639,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.outline-0 {
+  outline-width: 0px;
+}
+
 .drop-shadow-lg {
   --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -612,9 +660,5 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:pr-40 {
     padding-right: 10rem;
-  }
-
-  .sm\:pr-4 {
-    padding-right: 1rem;
   }
 }
