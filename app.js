@@ -29,6 +29,9 @@ mongoose.connect('mongodb://localhost:27017/accounterDB', {useNewUrlParser: true
 app.get('/', function(res,res){
     res.render('index');
 })
+app.get('/login', function(req, res){
+    res.render('login')
+})
 
 
 app.listen(port, function(){
