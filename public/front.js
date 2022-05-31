@@ -1,3 +1,6 @@
+
+// Back to top button
+
 //Get the button:
 mybutton = document.getElementById("myBtn");
 
@@ -19,4 +22,10 @@ function topFunction() {
     top: 0,
     behavior: 'smooth'
   })
+}
+
+// login redirect
+
+function redirectLogin(){
+  window.location.href = "/login";
 }
