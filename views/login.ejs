@@ -3,9 +3,9 @@
  
     <form action="/login" method="post" class="flex h-max grid-cols-2 flex-col items-center justify-center gap-4">
       <p class="text-4xl hover:cursor-pointer text-slate-900">Log In</p>
-      <% if (error) { %>
+      <% if (messages.error) { %>
         <div class="bg-red-500 text-white font-bold rounded-lg px-4 py-3" role="alert">
-          Password or Email is incorrect.
+         <%= messages.error %>
         </div>
       <% } %>
       <input type="text" class="t-1 block w-80 space-y-1 rounded-md border border-slate-300 bg-white px-3 py-2 placeholder-slate-400 shadow-sm drop-shadow-md focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" 

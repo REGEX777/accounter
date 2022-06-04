@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-
+const flash = require('express-flash');
 
 //mongoose connection
 mongoose.connect('mongodb://localhost:27017/accounterDB', {useNewUrlParser: true},function(err){
@@ -44,6 +44,7 @@ app.use(session({
     saveUninitialized: false
 }));
 //app use passport
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -57,7 +58,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 //startegy
-
+//login strategy
 passport.use(
     new LocalStrategy(
       {
@@ -73,7 +74,38 @@ passport.use(
               return done(null, user);
           });
       });
-  }));  
+  })); 
+  //signup startegy passport js
+    passport.use(
+        'local-signup',
+        new LocalStrategy(
+            {
+                usernameField: 'email',
+                passwordField: 'password',
+                passReqToCallback: true
+            },
+            function(req, email, password, done) {
+                process.nextTick(function() {
+                    User.findOne({ email: email },async function(err, user) {
+                        if (err) return done(err);
+                        if (user) return done(null, false, {message: 'Email Already In Use.'});
+                        const newUser = new User();
+                        newUser.email = email;
+                        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+                        newUser.password = hashedPassword;
+                        newUser.save(function(err) {
+                            if (err) throw err;
+                            console.log(newUser);
+
+                            return done(null, newUser);
+                        });
+                    });
+                });
+            }
+        )
+    );
+
+
 function isLoggedin(req, res, next) {
     if(req.isAuthenticated()) {
         return next();
@@ -97,57 +129,26 @@ app.get('/', function(res,res){
     res.render('index');
 })
 app.get('/login',isLoggedOut, function(req, res){
-    const response ={
-        error: req.query.err
-    }
-    res.render('login', response);
+    res.render('login')
 })
-app.get('/signup', function(req, res){
+app.get('/signup',isLoggedOut, function(req, res){
     res.render('signin')
 })
 app.get('/dashboard', isLoggedin,function(req,res){
     res.render('dashboard');
 })
-// post routes
-
-app.post('/signup', async function(req, res){
-        const existingUser = await User.findOne({email: req.body.email});
-        if(existingUser) {
-            return res.send('User already exists');
-        }
-
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const user = new User({
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPassword
-        });
-        user.save();
-        res.redirect('/login');
-})
+//signup startegy route
+app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/signup',
+    failureFlash: true
+}));
 //login route
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/dashboard',
-    failureRedirect: '/login?err=true'
+    failureRedirect: '/login',
+    failureFlash: true
   }));
-// app.post('/login', function(req, res, next){
-//     passport.authenticate('local', function(err, user, info){
-//         if(err) {
-//             return next(err);
-//         }
-//         if(!user) {
-//             console.log("123");
-//             return res.redirect('/login?error=true');
-//         }
-//         req.logIn(user, function(err){
-//             if(err) {
-//                 return next(err);
-//             }
-//             return res.redirect('/dashboard');
-//         });
-//     })(req, res, next);
-// })
-
 
 
 app.listen(port, function(){
