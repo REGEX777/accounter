@@ -1,13 +1,14 @@
 <%- include('partials/nav') %>
-<div class="flex h-screen items-center justify-center">
+<div class="flex h-[86.3vh] items-center justify-center">
     <form action="/signup" method="post" class="flex h-max grid-cols-2 flex-col items-center justify-center gap-4">
-      <p class="text-4xl hover:cursor-pointer text-slate-900">Sign Up</p>
+      <p class="text-4xl hover:cursor-pointer text-slate-900 uppercase font-bold font-montserrat">Sign Up</p>
       <% if (messages.error) { %>
-        <div class="bg-red-500 text-white font-bold rounded-lg px-4 py-3" role="alert">
+        <div class="bg-red-500 text-white font-normal rounded-lg px-4 py-3" role="alert">
          <%= messages.error %>
         </div>
       <% } %>
-      <input type="email" class="t-1 block w-80 space-y-1 rounded-md border border-slate-300 bg-white px-3 py-2 placeholder-slate-400 shadow-sm drop-shadow-md focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" id="email" name="email" placeholder="email" required/>
+      <input type="text" class="t-1 block w-80 space-y-1 rounded-md border border-slate-300 bg-white px-3 py-2 placeholder-slate-400 shadow-sm drop-shadow-md focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" id="username" name="username" placeholder="Username" required/>
+      <input type="email" class="t-1 block w-80 space-y-1 rounded-md border border-slate-300 bg-white px-3 py-2 placeholder-slate-400 shadow-sm drop-shadow-md focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" id="email" name="email" placeholder="Email" required/>
       <input type="password" class="t-1 block w-80 space-y-1 rounded-md border border-slate-300 bg-white px-3 py-2 placeholder-slate-400 shadow-sm drop-shadow-md focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" id="password" name="password" placeholder="Password" required/>
       <button class="w-100 h-9 w-32 rounded-md bg-green-500 text-zinc-50 drop-shadow-lg hover:bg-green-700 transition ease-in duration-100" type="submit">Sign in</button>
       <p class="text-xs">Already Have A Account? <a href="/login" class="text-teal-400 underline">Login Here</a>!</p>

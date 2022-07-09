@@ -21,6 +21,7 @@ mongoose.connect('mongodb://localhost:27017/accounterDB', {useNewUrlParser: true
 });
 //schemas
 const userSchema = new mongoose.Schema({ 
+    username: String,
     email: String,
     password: String
 })
@@ -66,10 +67,10 @@ passport.use(
       },function (email, password, done) {
       User.findOne({ email: email }, function (err, user) {
           if (err) return done(err);
-          if (!user) return done(null, console.log('dog'), false, { message: 'Incorrect email.' });
+          if (!user) return done(null, console.log('dog'), false, { message: 'Incorrect Email!' });
           bcrypt.compare(password, user.password, function (err, res) {
               if (err) return done(err);
-              if (res === false) return done(null, false, { message: 'Incorrect password.' });
+              if (res === false) return done(null, false, { message: 'Incorrect Password!' });
               
               return done(null, user);
           });
@@ -88,15 +89,16 @@ passport.use(
                 process.nextTick(function() {
                     User.findOne({ email: email },async function(err, user) {
                         if (err) return done(err);
-                        if (user) return done(null, false, {message: 'Email Already In Use.'});
+                        if (user) return done(null, false, {message: 'Email Already In Use!'});
                         const newUser = new User();
                         newUser.email = email;
                         const hashedPassword = await bcrypt.hash(req.body.password, 10);
+                        newUser.username = req.body.username;
                         newUser.password = hashedPassword;
                         newUser.save(function(err) {
                             if (err) throw err;
                             console.log(newUser);
-
+                            console.log('User Created Successfully!'.green);
                             return done(null, newUser);
                         });
                     });
@@ -135,7 +137,7 @@ app.get('/signup',isLoggedOut, function(req, res){
     res.render('signin')
 })
 app.get('/dashboard', isLoggedin,function(req,res){
-    res.render('dashboard');
+    res.render('dashboard', {user: req.user.username});
 })
 //signup startegy route
 app.post('/signup', passport.authenticate('local-signup', {
