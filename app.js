@@ -25,9 +25,16 @@ const userSchema = new mongoose.Schema({
     email: String,
     password: String
 })
+const dataSchema = new mongoose.Schema({
+    date: String,
+    income: Number,
+    expense: Number,
+    belongsTo: String
+})
+
 //models
 const User = mongoose.model('User', userSchema);
-
+const Data = mongoose.model('Data', dataSchema);
 
 
 //intialize express
@@ -135,6 +142,9 @@ app.get('/login',isLoggedOut, function(req, res){
 })
 app.get('/signup',isLoggedOut, function(req, res){
     res.render('signin')
+})
+app.get('/dataEntry',isLoggedin, function(req, res){
+    res.render('dataentry')
 })
 app.get('/dashboard', isLoggedin,function(req,res){
     res.render('dashboard', {user: req.user.username});
