@@ -143,7 +143,7 @@ app.get('/login',isLoggedOut, function(req, res){
 app.get('/signup',isLoggedOut, function(req, res){
     res.render('signin')
 })
-app.get('/dataEntry',isLoggedin, function(req, res){
+app.get('/dataEntry', function(req, res){
     res.render('dataentry')
 })
 app.get('/dashboard', isLoggedin,function(req,res){
@@ -160,7 +160,11 @@ app.post('/login', passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/login',
     failureFlash: true
-  }));
+}));
+app.post('/dataentry', function(req, res){  //isloggedin
+    const data = req.body;
+    console.log(data);
+})
 
 
 app.listen(port, function(){
