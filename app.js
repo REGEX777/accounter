@@ -143,7 +143,7 @@ app.get('/login',isLoggedOut, function(req, res){
 app.get('/signup',isLoggedOut, function(req, res){
     res.render('signin')
 })
-app.get('/dataEntry', function(req, res){
+app.get('/dataEntry', isLoggedin,function(req, res){
     res.render('dataentry')
 })
 app.get('/dashboard', isLoggedin,function(req,res){
@@ -163,7 +163,20 @@ app.post('/login', passport.authenticate('local', {
 }));
 app.post('/dataentry', function(req, res){  //isloggedin
     const data = req.body;
+    const username = req.user.username;
+    const currency = data.currency;
+    const date = data.date;
+    const time = data.time;
+
+    
+    if (!username) {
+        console.log("No username for this acc");
+    } else {
+        console.log(username);
+    }
+    console.log(currency, date, time);
     console.log(data);
+    res.redirect('/dataentry');
 })
 
 
