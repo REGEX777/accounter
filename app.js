@@ -28,6 +28,8 @@ const userSchema = new mongoose.Schema({
 const dataSchema = new mongoose.Schema({
     date: String,
     income: Number,
+    currency: String,
+    time: String,
     expense: Number,
     belongsTo: String
 })
@@ -144,7 +146,15 @@ app.get('/signup',isLoggedOut, function(req, res){
     res.render('signin')
 })
 app.get('/dataEntry', isLoggedin,function(req, res){
-    res.render('dataentry')
+    //finding data from the db and rendering it in frontend
+    Data.find({belongsTo: req.user.username}, function(err, data){
+        if(err){
+            console.log(err);
+        }else{
+            res.render('dataEntry', {data: data});
+            console.log(data);
+        }
+    })
 })
 app.get('/dashboard', isLoggedin,function(req,res){
     res.render('dashboard', {user: req.user.username});
@@ -167,7 +177,21 @@ app.post('/dataentry', function(req, res){  //isloggedin
     const currency = data.currency;
     const date = data.date;
     const time = data.time;
-
+    //saving data to db
+    const newData = new Data();
+    newData.date = date;
+    newData.income = data.income;
+    newData.currency = currency;
+    newData.time = time;
+    newData.expense = data.expense;
+    newData.belongsTo = username || req.user.email;
+    newData.save(function(err){
+        if(err){
+            console.log(err);
+        }else{
+            console.log('Data Saved Successfully!'.green);
+        }
+    });
     
     if (!username) {
         console.log("No username for this acc");
