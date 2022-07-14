@@ -27,10 +27,10 @@ const userSchema = new mongoose.Schema({
 })
 const dataSchema = new mongoose.Schema({
     date: String,
-    income: Number,
+    income: String,
     currency: String,
     time: String,
-    expense: Number,
+    expense: String,
     belongsTo: String
 })
 
@@ -180,10 +180,18 @@ app.post('/dataentry', function(req, res){  //isloggedin
     //saving data to db
     const newData = new Data();
     newData.date = date;
-    newData.income = data.income;
+    if(!data.income){
+        newData.income = "-";
+    }else{
+        newData.income = data.income;
+    }
+    if(!data.expense){
+        newData.expense = "-";
+    }else{
+        newData.expense = data.expense;
+    }
     newData.currency = currency;
     newData.time = time;
-    newData.expense = data.expense;
     newData.belongsTo = username || req.user.email;
     newData.save(function(err){
         if(err){
@@ -193,11 +201,6 @@ app.post('/dataentry', function(req, res){  //isloggedin
         }
     });
     
-    if (!username) {
-        console.log("No username for this acc");
-    } else {
-        console.log(username);
-    }
     console.log(currency, date, time);
     console.log(data);
     res.redirect('/dataentry');

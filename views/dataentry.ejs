@@ -8,9 +8,6 @@
                         <thead class="border-b">
                             <tr>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                    Sno.
-                                </th>
-                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                                     Income
                                 </th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
@@ -31,12 +28,13 @@
                         <form action="/dataentry" method="post">
                             <tbody>
                                 <tr class="border-b">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         <input type="text" name="income" id="income" class="rounded-md">
+                                        <p>Leave empty for none</p>
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         <input type="text" name="expense" id="expense" class="rounded-md">
+                                        <p>Leave empty for none</p>
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         <!-- <label for="currency">Currency</label> -->
@@ -56,22 +54,19 @@
                                 <% data.forEach(function(oneD){ %>
 
                                 <tr class="bg-white border-b">
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            #
-                                        </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap font-semibold">
                                             <%= oneD.income %>
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap font-semibold">
                                             <%= oneD.expense %>
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap font-semibold">
                                             <%= oneD.currency %>
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap font-semibold">
                                             <%= oneD.date %>
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap font-semibold">
                                             <%= oneD.time %>
                                         </td>
                                 </tr>
